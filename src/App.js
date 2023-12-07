@@ -1,11 +1,21 @@
 import React from "react";
 
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import Notes from "./components/Notes";
+import Footer from "./components/Footer";
+
 function App() {
   return (
-    <div className='w-full flex flex-row justify-center items-center p-8 bg-gray-500'>
-      <h1 className='text-white font-bold text-4xl tracking-widest'>Test</h1>
+    <div className=''>
+      <Navbar />
+      <body className='h-[200px] w-full flex flex-row justify-center items-center'>
+        <Sidebar />
+        <Notes />
+      </body>
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
