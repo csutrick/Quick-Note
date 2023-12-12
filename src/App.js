@@ -1,31 +1,29 @@
 import React, { useState, useEffect } from "react";
 
-import saveTitle from "./util/saveTitle";
-
-import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
-import Notes from "./components/Notes";
-import Footer from "./components/Footer";
+import Navbar from "./components/Navbar/index.js";
+import SearchBar from "./components/SearchBar/index.js";
+import NoteContainer from "./components/NoteContainer/index.js"
+import Footer from "./components/Footer/index.js";
 
 function App() {
-  const [note, setNote] = useState({ id: '', title: '', content: '' });
+  {/* Stores every user note */}
+  const [allNotes, setAllNotes] = useState([]);
 
-  // Runs every time the title changes
+  {/* When component mounts, get localStorage notes */}
   useEffect(() => {
-    console.log('Title changed n saved:', note.title);
-  }, [note.title]);
-
-  // Runs every time the content changes
-  useEffect(() => {
-    console.log(`${note.title} content has changed`);
-  }, [note.content]);
+    console.log("Getting user Notes!");
+    const userNotes = JSON.parse(localStorage.getItem("notes")) || [];
+    setAllNotes(userNotes);
+  }, []);
 
   return (
     <main>
       <Navbar />
-      <div className='h-[200px] w-full flex flex-row justify-center items-center'>
-        <Sidebar setNote={setNote} note={note} />
-        <Notes setNote={setNote} note={note} />
+      <div className='w-full flex flex-col justify-center items-center my-4'>
+        {/* Search user notes */}
+        <SearchBar />
+        {/* Renders user notes */}
+        <NoteContainer allNotes={allNotes} setAllNotes={setAllNotes}/>
       </div>
       <Footer />
     </main>
