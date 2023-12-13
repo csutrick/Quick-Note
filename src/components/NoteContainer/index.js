@@ -34,12 +34,18 @@ const NoteContainer = ({ allNotes, setAllNotes }) => {
                 </button>
             </div>
             {/* Render the Users notes */}
-            <div className='grid grid-cols-2 grid-flow-row auto-rows-auto gap-4 p-4'>
-                {allNotes.map((note) => (
-                    <Note key={note.id} inputRef={inputRef}
-                    note={note} setAllNotes={setAllNotes} />
-                ))}
-            </div>
+            {allNotes.length === 0 ? ( // If theres notes or not
+                <div className='flex flex-col justify-center items-center p-4'>
+                    <h2 className='text-gray-500 font-bold text-2xl'>No Notes to display</h2>
+                </div>
+            ) : (
+                <div className='grid grid-cols-2 grid-flow-row auto-rows-auto gap-4 p-4'>
+                    {allNotes.map((note) => (
+                        <Note key={note.id} inputRef={inputRef}
+                        note={note} setAllNotes={setAllNotes} />
+                    ))}
+                </div>
+            )}
         </section>
     )
 };
