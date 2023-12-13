@@ -37,7 +37,7 @@ const NoteContainer = ({ allNotes, setAllNotes }) => {
             <div className='grid grid-cols-2 grid-flow-row auto-rows-auto gap-4 p-4'>
                 {allNotes.map((note) => (
                     <Note key={note.id} inputRef={inputRef}
-                    note={note} allNotes={allNotes} />
+                    note={note} setAllNotes={setAllNotes} />
                 ))}
             </div>
         </section>
