@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 
+import { FaRegTrashAlt } from "react-icons/fa";
+import { IoMdColorFilter } from "react-icons/io";
+
 import saveTitle from "../../util/saveTitle.js";
 import saveContent from "../../util/saveContent.js";
-
-import { FaRegTrashAlt } from "react-icons/fa";
 
 const Note = ({ note, setAllNotes }) => {
     const [noteTitle, setNoteTitle] = useState(note.title);
@@ -40,22 +41,33 @@ const Note = ({ note, setAllNotes }) => {
         setAllNotes(updatedNotes);
     };
 
+    {/* Change Note Color */}
+    const handleColorButton = () => {
+        console.log("Color Button pressed");
+    };
+
     return (
-        <div
-        className='bg-blue-300 relative h-32 flex flex-col items-start rounded-lg drop-shadow-md'>
+        <div className='bg-blue-300 relative h-32 flex flex-col items-start rounded-lg transition-all duration-200 ease-in-out
+        drop-shadow-md hover:drop-shadow-lg active:drop-shadow-xl hover:scale-[1.01] active:scale-[1.02]'>
             {/* NOTE title */}
-            <div className='w-full flex flex-row flex-nowrap items-center bg-white rounded-t-lg'>
+            <div className='w-full flex flex-row flex-nowrap items-center bg-gray-100 rounded-t-lg'>
                 <input type="text" placeholder="Note Name"
                 value={noteTitle} onChange={handleTitleChange}
                 className='w-full h-8 rounded-tl-lg pl-1 bg-transparent outline-none'/>
+                <IoMdColorFilter onClick={handleColorButton}
+                className='mx-1 text-3xl text-gray-500 hover:text-black hover:scale-110 active:scale-125
+                transition-all duration-150 ease-in-out'/>
                 <FaRegTrashAlt onClick={handleDeleteButton}
-                className='text-2xl mx-1 text-gray-200 hover:text-red-500 hover:scale-105'/>
+                className='mx-1 text-2xl text-gray-500 hover:text-red-500 hover:scale-110 active:scale-125
+                transition-all duration-150 ease-in-out'/>
             </div>
             <textarea type="text" placeholder="Note Content"
             value={noteContent} onChange={handleContentChange}
             className='bg-transparent resize-none w-full h-full rounded-b-lg p-1 outline-none'/>
-            {/* NOTE id */}
-            <h3 className='absolute bottom-0 pb-1 pl-1 text-xs font-bold text-gray-400 text-left'>{note.id}</h3>
+            <div className='w-full flex flex-row justify-between'>
+                <h3 className='text-xs font-bold text-gray-400 text-left pl-1'>{note.id}</h3>
+                <h3 className='text-xs font-bold text-gray-400 text-left pr-1'>Character Count</h3>
+            </div>
         </div>
     )
 };

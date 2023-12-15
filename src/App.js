@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import Navbar from "./components/Navbar/index.js";
 import Footer from "./components/Footer/index.js";
-import Note from "./components/NoteContainer/note.js";
+import Note from "./components/Note/index.js";
 
 import addNote from "./util/createNewNote.js";
 
@@ -27,7 +27,7 @@ function App() {
   return (
     <main>
       <Navbar />
-      <div className='bg-red-300 w-full flex flex-col justify-center items-center my-4'>
+      <div className='w-full flex flex-col justify-center items-center my-4'>
         <button onClick={createNewNote}
         className='my-2 bg-green-400 px-4 py-1'>
           Add Note
