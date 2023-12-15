@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 
-import saveFile from "../../util/saveFile";
+import saveTitle from "../../util/saveTitle.js";
+import saveContent from "../../util/saveContent.js";
 
 import { FaRegTrashAlt } from "react-icons/fa";
 
-const Note = ({ inputRef, note, setAllNotes }) => {
+const Note = ({ note, setAllNotes }) => {
     const [noteTitle, setNoteTitle] = useState(note.title);
-    const [noteContent, setNoteContent] = useState(note.noteContent);
+    const [noteContent, setNoteContent] = useState(note.content);
 
     const handleTitleChange = (event) => {
         // Update the local state
@@ -18,11 +19,17 @@ const Note = ({ inputRef, note, setAllNotes }) => {
         setNoteContent(event.target.value);
     };
 
+    {/* When noteContent changes save content */}
     useEffect(() => {
-        saveFile(note.id, noteTitle, noteContent)
-    }, [noteTitle, noteContent]);
+        saveContent(note.id, noteContent);
+    }, [noteContent]);
 
+    {/* When noteTitle changes save title */}
+    useEffect(() => {
+        saveTitle(note.id, noteTitle);
+    }, [noteTitle]);
 
+    {/* Delete Current Note */}
     const handleDeleteButton = () => {
         let noteIdToDelete = note.id;
 
@@ -30,15 +37,15 @@ const Note = ({ inputRef, note, setAllNotes }) => {
         const updatedNotes = getStorageNotes.filter((note) => note.id !== noteIdToDelete);
 
         localStorage.setItem('notes', JSON.stringify(updatedNotes));
-        setAllNotes(updatedNotes)
+        setAllNotes(updatedNotes);
     };
 
     return (
         <div
-        className='relative h-32 flex flex-col items-start rounded-lg drop-shadow-md'>
+        className='bg-blue-300 relative h-32 flex flex-col items-start rounded-lg drop-shadow-md'>
             {/* NOTE title */}
             <div className='w-full flex flex-row flex-nowrap items-center bg-white rounded-t-lg'>
-                <input type="text" placeholder="Note Name" ref={inputRef}
+                <input type="text" placeholder="Note Name"
                 value={noteTitle} onChange={handleTitleChange}
                 className='w-full h-8 rounded-tl-lg pl-1 bg-transparent outline-none'/>
                 <FaRegTrashAlt onClick={handleDeleteButton}
@@ -46,7 +53,7 @@ const Note = ({ inputRef, note, setAllNotes }) => {
             </div>
             <textarea type="text" placeholder="Note Content"
             value={noteContent} onChange={handleContentChange}
-            className='bg-red-300 resize-none w-full h-full rounded-b-lg p-1 outline-none'/>
+            className='bg-transparent resize-none w-full h-full rounded-b-lg p-1 outline-none'/>
             {/* NOTE id */}
             <h3 className='absolute bottom-0 pb-1 pl-1 text-xs font-bold text-gray-400 text-left'>{note.id}</h3>
         </div>
