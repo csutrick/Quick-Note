@@ -1,17 +1,13 @@
-const saveFile = (Id, title, content) => {
+const saveContent = (Id, content) => {
     const existingNotes = JSON.parse(localStorage.getItem('notes'));
 
     // Find the index of the note with the given ID
     const noteIndex = existingNotes.findIndex((note) => note.id === Id);
 
-    // Update the title and content of the note at the found index
-    const updatedNote = {
-        ...existingNotes[noteIndex],
-        title,
-        content,
-    };
+    // Update the content of the note at the found index
+    const updatedNote = Object.assign({}, existingNotes[noteIndex], { content });
 
-     // Create the updated notes array
+    // Create the updated notes array
     const updatedNotes = [
         ...existingNotes.slice(0, noteIndex),
         updatedNote,
@@ -22,4 +18,4 @@ const saveFile = (Id, title, content) => {
     localStorage.setItem('notes', JSON.stringify(updatedNotes));
 };
 
-export default saveFile;
+export default saveContent;

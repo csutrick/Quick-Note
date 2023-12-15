@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
 const createNewNote = () => {
+    console.log("Adding new note");
     // Get existing notes array from localStorage
     const existingNotes = JSON.parse(localStorage.getItem('notes')) || [];
 
@@ -16,7 +17,7 @@ const createNewNote = () => {
 
     // Save the updated array back to localStorage
     localStorage.setItem('notes', JSON.stringify(updatedNotes));
-
+    
     return newNote;
 };
 
