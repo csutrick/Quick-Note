@@ -4,8 +4,6 @@ import Navbar from "./components/Navbar/index.js";
 import Footer from "./components/Footer/index.js";
 import Note from "./components/Note/index.js";
 
-import addNote from "./util/createNewNote.js";
-
 function App() {
   {/* Stores every user note */}
   const [allNotes, setAllNotes] = useState([]);
@@ -17,22 +15,11 @@ function App() {
     setAllNotes(userNotes);
   }, []);
 
-  {/* Add note to local storage */}
-  const createNewNote = () => {
-    const newNote = addNote();
-    setAllNotes(prevNotes => [newNote, ...prevNotes]);
-    console.log("New note added");
-  };
-
   return (
     <main>
-      <Navbar />
+      <Navbar setAllNotes={setAllNotes}/>
+      {/* Note Container */}
       <div className='w-full flex flex-col justify-center items-center my-4'>
-        <button onClick={createNewNote}
-        className='my-2 bg-green-400 px-4 py-1'>
-          Add Note
-        </button>
-        {/* Note Container */}
         {allNotes.length === 0 ? ( // If theres notes or not
             <div className=''>
               <p className='bg-blue-300 text-2xl font-bold'>No Notes</p>
