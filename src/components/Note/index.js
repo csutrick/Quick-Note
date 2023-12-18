@@ -7,6 +7,7 @@ import saveContent from "../../util/saveContent.js";
 
 import { FaRegTrashAlt } from "react-icons/fa";
 import { IoMdColorFilter } from "react-icons/io";
+import deleteNote from "../../util/deleteNote.js";
 
 const Note = ({ note, setAllNotes }) => {
     const [noteTitle, setNoteTitle] = useState(note.title);
@@ -50,12 +51,7 @@ const Note = ({ note, setAllNotes }) => {
 
     {/* Delete Current Note */}
     const handleDeleteButton = () => {
-        let noteIdToDelete = note.id;
-
-        const getStorageNotes = JSON.parse(localStorage.getItem('notes')) || [];
-        const updatedNotes = getStorageNotes.filter((note) => note.id !== noteIdToDelete);
-
-        localStorage.setItem('notes', JSON.stringify(updatedNotes));
+        const updatedNotes = deleteNote(note.id);
         setAllNotes(updatedNotes);
     };
 
