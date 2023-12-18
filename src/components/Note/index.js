@@ -13,13 +13,29 @@ const Note = ({ note, setAllNotes }) => {
     const [noteContent, setNoteContent] = useState(note.content);
 
     const handleTitleChange = (event) => {
-        // Update the local state
-        setNoteTitle(event.target.value);
+        const newTitle = event.target.value;
+
+        if (newTitle.length <= 32) {
+            // Update the local state
+            setNoteTitle(event.target.value);
+        } else if (event.nativeEvent.inputType === 'deleteContentBackward') {
+            // Allow backspace/delete to remove characters
+            setNoteTitle(newTitle.slice(0, 32));
+        }
+        // Ignore other input events if the limit is reached
     };
 
     const handleContentChange = (event) => {
-        // Update the local state if true
-        setNoteContent(event.target.value);
+        const newContent = event.target.value;
+
+        if (newContent.length <= 200) {
+             // Update the local state if true
+            setNoteContent(event.target.value);
+        } else if (event.nativeEvent.inputType === 'deleteContentBackward') {
+            // Allow backspace/delete to remove characters
+            setNoteContent(newContent.slice(0, 200));
+        }
+        // Ignore other input events if the limit is reached
     };
 
     {/* When noteContent changes save content */}
