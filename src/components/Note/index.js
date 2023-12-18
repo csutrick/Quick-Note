@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-import { FaRegTrashAlt } from "react-icons/fa";
-import { IoMdColorFilter } from "react-icons/io";
+import CharacterCounter from "./characterCounter.js";
 
 import saveTitle from "../../util/saveTitle.js";
 import saveContent from "../../util/saveContent.js";
+
+import { FaRegTrashAlt } from "react-icons/fa";
+import { IoMdColorFilter } from "react-icons/io";
 
 const Note = ({ note, setAllNotes }) => {
     const [noteTitle, setNoteTitle] = useState(note.title);
@@ -16,7 +18,7 @@ const Note = ({ note, setAllNotes }) => {
     };
 
     const handleContentChange = (event) => {
-        // Update the local state
+        // Update the local state if true
         setNoteContent(event.target.value);
     };
 
@@ -47,7 +49,7 @@ const Note = ({ note, setAllNotes }) => {
     };
 
     return (
-        <div className='bg-blue-300 relative h-32 flex flex-col items-start rounded-lg transition-all duration-200 ease-in-out
+        <div className='bg-blue-300 relative flex flex-col h-40 items-start rounded-lg transition-all duration-200 ease-in-out
         drop-shadow-md hover:drop-shadow-lg active:drop-shadow-xl hover:scale-[1.01] active:scale-[1.02]'>
             {/* NOTE title */}
             <div className='w-full flex flex-row flex-nowrap items-center bg-gray-100 rounded-t-lg'>
@@ -63,11 +65,8 @@ const Note = ({ note, setAllNotes }) => {
             </div>
             <textarea type="text" placeholder="Note Content"
             value={noteContent} onChange={handleContentChange}
-            className='bg-transparent resize-none w-full h-full rounded-b-lg p-1 outline-none'/>
-            <div className='w-full flex flex-row justify-between'>
-                <h3 className='text-xs font-bold text-gray-400 text-left pl-1'>{note.id}</h3>
-                <h3 className='text-xs font-bold text-gray-400 text-left pr-1'>Character Count</h3>
-            </div>
+            className='bg-blue-300 resize-none w-full h-full rounded-b-lg outline-none p-1'/>
+            <CharacterCounter noteContent={noteContent} />
         </div>
     )
 };
