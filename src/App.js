@@ -19,7 +19,7 @@ function App() {
     <main>
       <Navbar setAllNotes={setAllNotes}/>
       {/* Note Container */}
-      <div className='w-full flex flex-col justify-center items-center my-4'>
+      <div className='w-full flex flex-col justify-center items-center'>
         {allNotes.length === 0 ? ( // If theres notes or not
             <div className=''>
               <p className='bg-blue-300 text-2xl font-bold'>No Notes</p>
