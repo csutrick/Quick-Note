@@ -18,7 +18,7 @@ function App() {
   }, []);
 
   return (
-    <main>
+    <main className='h-screen flex flex-col'>
       <Navbar allNotes={allNotes} setAllNotes={setAllNotes} columns={columns} setColumns={setColumns}/>
       {/* Note Container */}
       <div className='w-full flex flex-col justify-center items-center'>
