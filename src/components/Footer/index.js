@@ -25,7 +25,7 @@ const Footer = () => {
                         <label className='text-white text-sm font-bold drop-shadow-md whitespace-nowrap'>View Github</label>
                     </div>
                 </div>
-                <h3 className='text-white font-bold text-base drop-shadow-lg'>Thank you for viewing my project</h3>
+                <h3 className='text-white font-bold text-base drop-shadow-lg tracking-wider'>Thank you for viewing my project</h3>
         </footer>
     )
 };
