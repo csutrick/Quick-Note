@@ -1,7 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
 
+import colorHexCodes from '../components/Note/colorHexCodes.js';
+
 const createNewNote = () => {
     console.log("Adding new note");
+
     // Get existing notes array from localStorage
     const existingNotes = JSON.parse(localStorage.getItem('notes')) || [];
 
@@ -10,6 +13,7 @@ const createNewNote = () => {
         id: uuidv4(),
         title: '',
         content: '',
+        color: colorHexCodes[Math.floor(Math.random() * colorHexCodes.length)],
     };
 
     // Add new note to beginning of the existing array

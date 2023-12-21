@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import CharacterCounter from "./CharacterCounter.js";
-import ColorSwatches from "./ColorSwatches.js"
+import ColorSwatches from "./colorSwatches.js";
+import CharacterCounter from "./characterCounter.js";
 
 import saveTitle from "../../util/saveTitle.js";
 import saveContent from "../../util/saveContent.js";
+import saveColor from "../../util/saveColor.js";
 
 import { FaRegTrashAlt } from "react-icons/fa";
 import { IoMdColorFilter } from "react-icons/io";
@@ -13,6 +14,7 @@ import deleteNote from "../../util/deleteNote.js";
 const Note = ({ note, setAllNotes }) => {
     const [noteTitle, setNoteTitle] = useState(note.title);
     const [noteContent, setNoteContent] = useState(note.content);
+    const [noteColor, setNoteColor] = useState(note.color);
     const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
 
     const handleTitleChange = (event) => {
@@ -51,6 +53,11 @@ const Note = ({ note, setAllNotes }) => {
         saveTitle(note.id, noteTitle);
     }, [noteTitle]);
 
+    {/* When noteColor changes save color */}
+    useEffect(() => {
+        saveColor(note.id, noteColor);
+    }, [noteColor]);
+
     {/* Delete Current Note */}
     const handleDeleteButton = () => {
         const updatedNotes = deleteNote(note.id);
@@ -81,14 +88,18 @@ const Note = ({ note, setAllNotes }) => {
                     </div>
                     {/* NOTE content */}
                     <textarea type="text" placeholder="Note Content"
-                    value={noteContent} onChange={handleContentChange}
-                    className='bg-blue-300 resize-none w-full h-full p-1 rounded-b-lg outline-none'/>
+                    value={noteContent} onChange={handleContentChange} style={{ backgroundColor: noteColor }}
+                    className='resize-none w-full h-full p-1 rounded-b-lg outline-none'/>
                     {/* NOTE character counter */}
                     <CharacterCounter noteContent={noteContent} />
                 </div>
             ) : (
                 // Color picker for note color
-                <ColorSwatches handleColorButton={handleColorButton}/>
+                <ColorSwatches 
+                    handleColorButton={handleColorButton}
+                    noteColor={noteColor}
+                    setNoteColor={setNoteColor}
+                />
             )}
         </div>
     )
