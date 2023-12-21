@@ -1,20 +1,24 @@
 import React from "react";
 
-import swatchColors from './colors.json';
+import colorHexCodes from './colorHexCodes';
 
 import { IoMdClose } from "react-icons/io";
 
-const ColorSwatches = ({ handleColorButton }) => {
+const ColorSwatches = ({ handleColorButton, noteColor, setNoteColor }) => {
+    const swatchClick = (hexCode) => {
+        console.log("Color Button Pressed with hexCode:", hexCode);
+        setNoteColor(hexCode);
+    }
+
     return (
-        <div className='relative bg-blue-300 flex flex-col justify-center items-center min-h-32 rounded-lg p-2'>
-            <h2 className='underline text-white text-xl font-bold'>Select Color:</h2>
+        <div className='relative bg-gray-100 flex flex-col justify-center items-center min-h-32 rounded-lg p-2'>
+            <h2 className='underline text-gray-500 text-xl font-bold'>Select Color:</h2>
             {/* Color swatches */}
             <div className='flex flex-row flex-wrap justify-evenly'>
-                {swatchColors.map((color, index) => (
-                    <div key={index}
-                    className='h-8 w-8 mx-2 my-1 rounded-md'
-                    style={{ backgroundColor: color.hex }}>
-                    
+                {colorHexCodes.map((hexCode, index) => (
+                    <div key={index} onClick={() => swatchClick(hexCode)}
+                    className={`h-8 w-8 mx-2 my-1 rounded-md ${noteColor === hexCode ? 'border-gray-500 border-4' : ''}`}
+                    style={{ backgroundColor: hexCode }}>
                     </div>
                 ))}
             </div>
