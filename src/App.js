@@ -23,8 +23,8 @@ function App() {
       {/* Note Container */}
       <div className='w-full flex flex-col justify-center items-center'>
         {allNotes.length === 0 ? ( // If theres notes or not
-            <div className=''>
-              <p className='bg-blue-300 text-2xl font-bold'>No Notes</p>
+            <div className='h-40 flex flex-col justify-center items-center'>
+              <p className='text-2xl font-bold'>No Notes Found</p>
             </div>
           ) : (
             <div className={`w-full grid ${columnNumber} grid-flow-row auto-rows-auto gap-4 p-4`}>
