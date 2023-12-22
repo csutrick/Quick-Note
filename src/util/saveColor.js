@@ -16,6 +16,7 @@ const saveColor = (Id, color) => {
 
     // Save the updated array back to localStorage
     localStorage.setItem('notes', JSON.stringify(updatedNotes));
+    console.log("Color Changed!")
 };
 
 export default saveColor;

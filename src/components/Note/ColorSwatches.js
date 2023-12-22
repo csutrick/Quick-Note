@@ -6,7 +6,7 @@ import { IoMdClose } from "react-icons/io";
 
 const ColorSwatches = ({ handleColorButton, noteColor, setNoteColor }) => {
     const swatchClick = (hexCode) => {
-        console.log("Color Button Pressed with hexCode:", hexCode);
+        console.log("Changing Color too:", hexCode);
         setNoteColor(hexCode);
     }
 
@@ -17,11 +17,13 @@ const ColorSwatches = ({ handleColorButton, noteColor, setNoteColor }) => {
             <div className='flex flex-row flex-wrap justify-evenly'>
                 {colorHexCodes.map((hexCode, index) => (
                     <div key={index} onClick={() => swatchClick(hexCode)}
-                    className={`h-8 w-8 mx-2 my-1 rounded-md ${noteColor === hexCode ? 'border-gray-500 border-4' : ''}`}
+                    className={`h-8 w-8 mx-2 my-1 rounded-md ${noteColor === hexCode ? 'border-gray-500 border-4 active:border-0' : ''}
+                    hover:scale-105 active:scale-110 transition-all duration-100 ease-in-out`}
                     style={{ backgroundColor: hexCode }}>
                     </div>
                 ))}
             </div>
+            {/* Close button */}
             <button className='absolute top-0 right-0'>
                 <IoMdClose onClick={handleColorButton}
                 className='text-3xl text-gray-500 hover:text-black hover:scale-110 active:scale-125

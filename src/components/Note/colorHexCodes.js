@@ -1,20 +1,14 @@
 const colorHexCodes = [
-    "#FF0000",
-    "#00FF00",
-    "#0000FF",
-    "#FFFF00",
-    "#FFA500",
-    "#800080",
-    "#FFC0CB",
-    "#A52A2A",
-    "#808080",
-    "#000000",
-    "#FFFFFF",
-    "#00FFFF",
-    "#FF00FF",
-    "#00FF00",
-    "#008080",
-    "#4B0082"
+    "#93c5fd",
+    "#6ee7b7",
+    "#93a5cf",
+    "#c4b5fd",
+    "#fda4af",
+    "#fef08a",
+    "#feb2b2",
+    "#93e1d8",
+    "#fbd38d",
+    "#d1d5db",
 ];
 
 export default colorHexCodes;
