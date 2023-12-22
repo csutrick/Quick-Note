@@ -73,25 +73,29 @@ const Note = ({ note, setAllNotes }) => {
         <div className=''>
             {!isColorPickerOpen ? (
                 // Actual User Note
-                <div className='relative flex flex-col h-32'>
+                <div className='flex flex-col h-72 sm:h-60 md:h-52 lg:h-36'>
                     {/* NOTE title */}
-                    <div className='w-full flex flex-row flex-nowrap items-center rounded-t-lg bg-gray-100'>
+                    <div className='w-full flex flex-row flex-wrap lg:flex-nowrap items-center rounded-t-lg bg-gray-100
+                    border-b-2 border-gray-500'>
                         <input type="text" placeholder="Note Name"
                         value={noteTitle} onChange={handleTitleChange}
-                        className='w-full h-8 rounded-tl-lg pl-1 bg-transparent outline-none'/>
-                        <IoMdColorFilter onClick={handleColorButton}
-                        className='mx-1 text-3xl text-gray-500 hover:text-black hover:scale-110 active:scale-125
-                        transition-all duration-150 ease-in-out'/>
-                        <FaRegTrashAlt onClick={handleDeleteButton}
-                        className='mx-1 text-2xl text-gray-500 hover:text-red-500 hover:scale-110 active:scale-125
-                        transition-all duration-150 ease-in-out'/>
+                        className='w-full h-8 rounded-tl-lg pl-1 bg-transparent text-sm sm:text-base outline-none justify-self-start text-center lg:text-left'/>
+                        <div className='w-full lg:w-min flex flex-row flex-nowrap items-center justify-between border-dotted border-gray-500 border-t-2 lg:border-t-0'>
+                            <CharacterCounter noteContent={noteContent}/>
+                            <div className='flex flex-row items-center justify-center flex-nowrap mr-1'>
+                                <IoMdColorFilter onClick={handleColorButton}
+                                className='mr-0 sm:mr-1 text-2xl sm:text-3xl text-gray-500 hover:text-black hover:scale-110 active:scale-125
+                                transition-all duration-150 ease-in-out'/>
+                                <FaRegTrashAlt onClick={handleDeleteButton}
+                                className='ml-1 text-xl sm:text-2xl text-gray-500 hover:text-red-500 hover:scale-110 active:scale-125
+                                transition-all duration-150 ease-in-out'/>
+                            </div>
+                        </div>
                     </div>
                     {/* NOTE content */}
                     <textarea type="text" placeholder="Note Content"
                     value={noteContent} onChange={handleContentChange} style={{ backgroundColor: noteColor }}
-                    className='resize-none w-full h-full p-1 rounded-b-lg outline-none'/>
-                    {/* NOTE character counter */}
-                    <CharacterCounter noteContent={noteContent} />
+                    className='resize-none w-full h-full p-1 rounded-b-lg outline-none text-sm sm:text-base'/>
                 </div>
             ) : (
                 // Color picker for note color
