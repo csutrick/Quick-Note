@@ -13,7 +13,6 @@ function App() {
 
   {/* When component mounts, get localStorage notes */}
   useEffect(() => {
-    console.log("Getting user Notes!");
     const userNotes = JSON.parse(localStorage.getItem("notes")) || [];
     setAllNotes(userNotes);
   }, []);

@@ -10,7 +10,6 @@ const Navbar = ({ allNotes, setAllNotes, columns, setColumns }) => {
     const createNewNote = () => {
         const newNote = addNote();
         setAllNotes(prevNotes => [newNote, ...prevNotes]);
-        console.log("New note added");
     };
 
     const toggleColumns = () => {

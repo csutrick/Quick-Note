@@ -3,8 +3,6 @@ import { v4 as uuidv4 } from 'uuid';
 import colorHexCodes from '../components/Note/colorHexCodes.js';
 
 const createNewNote = () => {
-    console.log("Adding new note");
-
     // Get existing notes array from localStorage
     const existingNotes = JSON.parse(localStorage.getItem('notes')) || [];
 

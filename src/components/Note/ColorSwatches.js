@@ -6,7 +6,6 @@ import { IoMdClose } from "react-icons/io";
 
 const ColorSwatches = ({ handleColorButton, noteColor, setNoteColor }) => {
     const swatchClick = (hexCode) => {
-        console.log("Changing Color too:", hexCode);
         setNoteColor(hexCode);
     }
 
