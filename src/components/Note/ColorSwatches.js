@@ -10,7 +10,8 @@ const ColorSwatches = ({ handleColorButton, noteColor, setNoteColor }) => {
     }
 
     return (
-        <div className='relative bg-gray-100 flex flex-col justify-center items-center h-72 sm:h-60 md:h-52 lg:h-36 rounded-lg p-2'>
+        <div className='relative bg-gray-100 flex flex-col justify-center items-center h-72 sm:h-60 md:h-52 lg:h-36 rounded-lg p-2
+        drop-shadow-md hover:scale-[1.01] transition-all duration-100 ease-in'>
             <h2 className='underline text-gray-500 text-xl font-bold'>Select Color:</h2>
             {/* Color swatches */}
             <div className='flex flex-row flex-wrap justify-evenly'>

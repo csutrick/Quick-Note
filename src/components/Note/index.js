@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import ColorSwatches from "./colorSwatches.js";
+import ColorSwatches from "./ColorSwatches.js";
 import CharacterCounter from "./characterCounter.js";
 
 import saveTitle from "../../util/saveTitle.js";
@@ -73,7 +73,7 @@ const Note = ({ note, setAllNotes }) => {
         <div className=''>
             {!isColorPickerOpen ? (
                 // Actual User Note
-                <div className='flex flex-col h-72 sm:h-60 md:h-52 lg:h-36'>
+                <div className='flex flex-col h-72 sm:h-60 md:h-52 lg:h-36 drop-shadow-md hover:scale-[1.01] transition-all duration-100 ease-in'>
                     {/* NOTE title */}
                     <div className='w-full flex flex-row flex-wrap lg:flex-nowrap items-center rounded-t-lg bg-gray-100
                     border-b-2 border-gray-500'>
